@@ -1,0 +1,29 @@
+<h1>Feature: {{feature.title}}</h1>
+
+<table class="record_properties">
+    <tbody>
+        <tr>
+            <th>Scenarios</th>
+            <td>
+                <ul>
+                    {% for scenario in feature.scenarios %}
+                        <li>Scenario: {{ scenario.title }}</li>
+                        <ul>
+                            {% for step in scenario.steps %}
+                                <li>{{ step.type }} {{ step.text }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endfor %}
+                </ul>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<ul class="record_actions">
+    <li>
+        <a href="{{ path('project_show', {'id': project.id}) }}">
+            Back to the project
+        </a>
+    </li>
+</ul>
