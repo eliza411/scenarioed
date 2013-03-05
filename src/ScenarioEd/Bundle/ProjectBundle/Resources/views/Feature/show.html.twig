@@ -26,4 +26,15 @@
             Back to the project
         </a>
     </li>
+    <li>
+        <a href="{{ path('project_feature_edit', { 'project_id': project.id, 'file': feature.file }) }}">
+            Edit
+        </a>
+    </li>
+    <li>
+        <form action="{{ path('project_feature_delete', { 'project_id': project.id, 'file': feature.file }) }}" method="post">
+            {{ form_widget(delete_form) }}
+            <button type="submit">Delete</button>
+        </form>
+    </li>
 </ul>
