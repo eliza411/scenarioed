@@ -18,4 +18,4 @@ Install schema:
     cd /vagrant
     php app/console doctrine:schema:create
 
-Then browse to http://dev.scenarioed.com/app_dev.php/project/
+Then browse to http://dev.scenarioed.org/app_dev.php/project/
