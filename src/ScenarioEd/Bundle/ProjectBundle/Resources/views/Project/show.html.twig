@@ -44,6 +44,11 @@
         </a>
     </li>
     <li>
+        <a href="{{ path('project_feature_new', { 'project_id': entity.id }) }}">
+            Create a new entry
+        </a>
+    </li>
+    <li>
         <form action="{{ path('project_delete', { 'id': entity.id }) }}" method="post">
             {{ form_widget(delete_form) }}
             <button type="submit">Delete</button>
