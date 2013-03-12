@@ -12,7 +12,7 @@ Vagrant::Config.run do |config|
   # Install vagrant-hostmaster to automatically manage host's hosts file.
   # Change IP address if you need to run more than one project at a time, or if
   # chosen netmask conflicts another network.
-  config.vm.host_name = "dev.scenarioed.com"
+  config.vm.host_name = "dev.scenarioed.org"
   config.vm.network :hostonly, "192.168.87.11"
 
   # Enable NFS shares when possible
