@@ -1,16 +1,20 @@
-<h1>Project creation</h1>
+{% extends "::base.html.twig" %}
 
-<form action="{{ path('project_create') }}" method="post" {{ form_enctype(form) }}>
-    {{ form_widget(form) }}
-    <p>
-        <button type="submit">Create</button>
-    </p>
-</form>
+{% block body %}
+    <h1>Project creation</h1>
 
-<ul class="record_actions">
-    <li>
-        <a href="{{ path('project') }}">
-            Back to the list
-        </a>
-    </li>
-</ul>
+    <form action="{{ path('project_create') }}" method="post" {{ form_enctype(form) }}>
+        {{ form_widget(form) }}
+        <p>
+            <button type="submit">Create</button>
+        </p>
+    </form>
+
+    <ul class="record_actions">
+        <li>
+            <a href="{{ path('project') }}">
+                Back to the list
+            </a>
+        </li>
+    </ul>
+{% endblock %}

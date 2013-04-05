@@ -1,40 +1,44 @@
-<h1>Feature: {{feature.title}}</h1>
+{% extends "::base.html.twig" %}
 
-<table class="record_properties">
-    <tbody>
-        <tr>
-            <th>Scenarios</th>
-            <td>
-                <ul>
-                    {% for scenario in feature.scenarios %}
-                        <li>Scenario: {{ scenario.title }}</li>
-                        <ul>
-                            {% for step in scenario.steps %}
-                                <li>{{ step.type }} {{ step.text }}</li>
-                            {% endfor %}
-                        </ul>
-                    {% endfor %}
-                </ul>
-            </td>
-        </tr>
-    </tbody>
-</table>
+{% block body %}
+    <h1>Feature: {{feature.title}}</h1>
 
-<ul class="record_actions">
-    <li>
-        <a href="{{ path('project_show', {'id': project.id}) }}">
-            Back to the project
-        </a>
-    </li>
-    <li>
-        <a href="{{ path('project_feature_edit', { 'project_id': project.id, 'file': feature.file }) }}">
-            Edit
-        </a>
-    </li>
-    <li>
-        <form action="{{ path('project_feature_delete', { 'project_id': project.id, 'file': feature.file }) }}" method="post">
-            {{ form_widget(delete_form) }}
-            <button type="submit">Delete</button>
-        </form>
-    </li>
-</ul>
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>Scenarios</th>
+                <td>
+                    <ul>
+                        {% for scenario in feature.scenarios %}
+                            <li>Scenario: {{ scenario.title }}</li>
+                            <ul>
+                                {% for step in scenario.steps %}
+                                    <li>{{ step.type }} {{ step.text }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endfor %}
+                    </ul>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul class="record_actions">
+        <li>
+            <a href="{{ path('project_show', {'id': project.id}) }}">
+                Back to the project
+            </a>
+        </li>
+        <li>
+            <a href="{{ path('project_feature_edit', { 'project_id': project.id, 'file': feature.file }) }}">
+                Edit
+            </a>
+        </li>
+        <li>
+            <form action="{{ path('project_feature_delete', { 'project_id': project.id, 'file': feature.file }) }}" method="post">
+                {{ form_widget(delete_form) }}
+                <button type="submit">Delete</button>
+            </form>
+        </li>
+    </ul>
+{%  endblock %}

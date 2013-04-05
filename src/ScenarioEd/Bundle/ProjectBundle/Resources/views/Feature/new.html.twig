@@ -1,16 +1,21 @@
-<h1>Feature creation</h1>
+{% extends "::base.html.twig" %}
 
-<form action="{{ path('project_feature_create', { 'project_id': project.id }) }}" method="post" {{ form_enctype(form) }}>
-    {{ form_widget(form) }}
-    <p>
-        <button type="submit">Create</button>
-    </p>
-</form>
+{% block body %}
 
-<ul class="record_actions">
-    <li>
-        <a href="{{ path('project_show', { 'id': project.id }) }}">
-            Back to the list
-        </a>
-    </li>
-</ul>
+    <h1>Feature creation</h1>
+
+    <form action="{{ path('project_feature_create', { 'project_id': project.id }) }}" method="post" {{ form_enctype(form) }}>
+        {{ form_widget(form) }}
+        <p>
+            <button type="submit">Create</button>
+        </p>
+    </form>
+
+    <ul class="record_actions">
+        <li>
+            <a href="{{ path('project_show', { 'id': project.id }) }}">
+                Back to the list
+            </a>
+        </li>
+    </ul>
+{% endblock %}

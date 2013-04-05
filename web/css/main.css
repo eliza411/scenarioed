@@ -1,0 +1,16 @@
+body {
+    font-size: 100%;
+    padding: 20px;
+}
+
+ul,ol {
+  margin-bottom: 12px;
+}
+
+li {
+    margin-bottom: 2px;
+}
+
+label {
+    margin-right: 5px;
+}

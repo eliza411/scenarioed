@@ -1,57 +1,61 @@
-<h1>Project</h1>
+{% extends "::base.html.twig" %}
 
-<table class="record_properties">
-    <tbody>
-        <tr>
-            <th>Id</th>
-            <td>{{ entity.id }}</td>
-        </tr>
-        <tr>
-            <th>Repository_uri</th>
-            <td>{{ entity.repositoryuri }}</td>
-        </tr>
-        <tr>
-            <th>Features</th>
-            <td>
-                <ul>
-                    {% for feature in features %}
-                    <li>
-		        <a href="{{ path('project_feature_show', {'project_id': entity.id, 'file': feature.file }) }}">
-                            Feature: {{ feature.title }}
-                        </a>
-                        <ul>
-                            {% for scenario in feature.scenarios %}
-                                <li>Scenario: {{ scenario.title }}</li>
-                            {% endfor %}
-                        </ul>
-                    </li>
-                    {% endfor %}
-                </ul>
-            </td>
-        </tr>
-    </tbody>
-</table>
+{% block body %}
+    <h1>Project</h1>
 
-<ul class="record_actions">
-    <li>
-        <a href="{{ path('project') }}">
-            Back to the list
-        </a>
-    </li>
-    <li>
-        <a href="{{ path('project_edit', { 'id': entity.id }) }}">
-            Edit
-        </a>
-    </li>
-    <li>
-        <a href="{{ path('project_feature_new', { 'project_id': entity.id }) }}">
-            Create a new entry
-        </a>
-    </li>
-    <li>
-        <form action="{{ path('project_delete', { 'id': entity.id }) }}" method="post">
-            {{ form_widget(delete_form) }}
-            <button type="submit">Delete</button>
-        </form>
-    </li>
-</ul>
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+            <tr>
+                <th>Repository_uri</th>
+                <td>{{ entity.repositoryuri }}</td>
+            </tr>
+            <tr>
+                <th>Features</th>
+                <td>
+                    <ul>
+                        {% for feature in features %}
+                        <li>
+                <a href="{{ path('project_feature_show', {'project_id': entity.id, 'file': feature.file }) }}">
+                                Feature: {{ feature.title }}
+                            </a>
+                            <ul>
+                                {% for scenario in feature.scenarios %}
+                                    <li>Scenario: {{ scenario.title }}</li>
+                                {% endfor %}
+                            </ul>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul class="record_actions">
+        <li>
+            <a href="{{ path('project') }}">
+                Back to the list
+            </a>
+        </li>
+        <li>
+            <a href="{{ path('project_edit', { 'id': entity.id }) }}">
+                Edit
+            </a>
+        </li>
+        <li>
+            <a href="{{ path('project_feature_new', { 'project_id': entity.id }) }}">
+                Create a new entry
+            </a>
+        </li>
+        <li>
+            <form action="{{ path('project_delete', { 'id': entity.id }) }}" method="post">
+                {{ form_widget(delete_form) }}
+                <button type="submit">Delete</button>
+            </form>
+        </li>
+    </ul>
+{% endblock %}
