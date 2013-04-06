@@ -24,35 +24,35 @@ Installation
 
 2. Clone the repository
 
-       git clone git://github.com/scenarioed/scenarioed.git
+         git clone git://github.com/scenarioed/scenarioed.git
 
 3. Change directory into the scenarioed folder
 
-       cd scenarioed
+         cd scenarioed
 
 4. Get composer: 
 
-       curl -sS https://getcomposer.org/installer | php
+         curl -sS https://getcomposer.org/installer | php
 
 5. Install: 
 
-       php composer.phar install
+         php composer.phar install
 
 6. Create database
 
-       mysql -u root -p
-       create database database_name
-       grant all on database_name.* to database_user@localhost
+         mysql -u root -p
+         create database database_name
+         grant all on database_name.* to database_user@localhost
 
 7. Edit app/config/parameters.yml to set the database name and database user
 
 8. Load the database schema
 
-       php app/console doctrine:schema:create
+         php app/console doctrine:schema:create
 
 9. Ensure the web server has write privileges to app/cache and /app/logs. Replace www-data with the user which runs the webserver.
 
-       chown www-data app/logs app/cache
+         chown www-data app/logs app/cache
 
 10. Configure Apache to point at the scenarioed/web folder
 
