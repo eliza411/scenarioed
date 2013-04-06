@@ -3,6 +3,10 @@ scenario_ed_project:
     type:     annotation
     prefix:   /
 
+homepage:
+    pattern:  /
+    defaults: { _controller: ScenarioEdProjectBundle:Project:welcome }
+
 # Internal routing configuration to handle ESI
 # ****** WARNING ******
 # This route should be enabled with caution as it can open a security vulnerability

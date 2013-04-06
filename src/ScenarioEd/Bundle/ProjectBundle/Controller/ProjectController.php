@@ -19,6 +19,15 @@ use ScenarioEd\Bundle\ProjectBundle\Form\ProjectType;
 class ProjectController extends BaseController
 {
     /**
+     * @Route("/welcome", name="welcome")
+     * @Template()
+    */
+    public function welcomeAction()
+    {
+        return array("welcome" => "Scenarioed");
+    }
+
+    /**
      * Lists all Project entities.
      *
      * @Route("/", name="project")
