@@ -1,8 +1,8 @@
 ScenarioEd
-----------
+==========
 
 Requirements
-============
+------------
 
  * Git
  * cURL (or wget - instructions use curl)
@@ -18,35 +18,36 @@ Requirements
 
 
 Installation
-============
-#. Verify that you have set the date.timezone in the php.ini
+------------
 
-#. Clone the repository
+1. Verify that you have set the date.timezone in the php.ini
+
+2. Clone the repository
      git clone git://github.com/scenarioed/scenarioed.git
 
-#. Change directory into the scenarioed folder
+3. Change directory into the scenarioed folder
      cd scenarioed
 
-#. Get composer: 
+4. Get composer: 
      curl -sS https://getcomposer.org/installer | php
 
-#. Install: 
+5. Install: 
      php composer.phar install
 
-#. Create database
+6. Create database
      mysql -u root -p
      create database database_name
      grant all on database_name.* to database_user@localhost
 
-#. Edit app/config/parameters.yml to set the database name and database user
+7. Edit app/config/parameters.yml to set the database name and database user
 
-#. Load the database schema
+8. Load the database schema
      php app/console doctrine:schema:create
 
-#. Ensure the web server has write privileges to app/cache and /app/logs. Replace www-data with the user which runs the webserver.
+9. Ensure the web server has write privileges to app/cache and /app/logs. Replace www-data with the user which runs the webserver.
 
      chown www-data app/logs app/cache
 
-#. Configure Apache to point at the scenarioed/web folder
+10. Configure Apache to point at the scenarioed/web folder
 
-#. Load yourdomain.com/project
+11. Load yourdomain.com/project
