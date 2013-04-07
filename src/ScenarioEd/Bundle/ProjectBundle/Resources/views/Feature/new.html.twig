@@ -1,8 +1,8 @@
 {% extends "::base.html.twig" %}
+   {% block title %}Create a Feature {% endblock %}
 
-{% block body %}
-
-    <h1>Feature creation</h1>
+   {% block body %}
+     <h1>{{ block('title') }}</h1>
 
     <form action="{{ path('project_feature_create', { 'project_id': project.id }) }}" method="post" {{ form_enctype(form) }}>
         {{ form_widget(form) }}

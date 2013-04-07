@@ -24,7 +24,7 @@ class ProjectController extends BaseController
     */
     public function welcomeAction()
     {
-        return array("welcome" => "Scenarioed");
+        return array("welcome" => "Welcome");
     }
 
     /**

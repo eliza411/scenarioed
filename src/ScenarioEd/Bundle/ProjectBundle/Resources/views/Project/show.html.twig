@@ -1,9 +1,9 @@
 {% extends "::base.html.twig" %}
+   {% block title %}Project{% endblock %}
 
-{% block body %}
-    <h1>Project</h1>
-
-    <table class="record_properties">
+   {% block body %}
+     <h1>{{ block('title') }}</h1>
+     <table class="record_properties">
         <tbody>
             <tr>
                 <th>Id</th>

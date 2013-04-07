@@ -1,5 +1,6 @@
 {% extends "::base.html.twig" %}
+   {% block title %}Welcome to ScenarioEd{% endblock %}
 
-{% block body %}
-    <h1>{{ welcome }}</h1>
-{% endblock %}
+   {% block body %}
+     <h1>{{ block('title') }}</h1>
+   {% endblock %}

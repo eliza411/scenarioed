@@ -14,3 +14,29 @@ li {
 label {
     margin-right: 5px;
 }
+
+a#title {
+    text-decoration: none;
+    padding-top: 0;
+}
+
+#title h1 {
+    display: inline;
+}
+
+#header {
+    border-bottom: 1px solid #aaa;
+    margin-bottom: 20px;
+}
+
+#content {
+    background-color: #F6F6F6;
+    border: 1px solid #DFDFDF;
+    padding: 30px 28px;
+    border-radius: 16px 16px 16px 16px;
+    margin-bottom: 20px;
+}
+
+.button {
+	padding: 0.75em 1em;
+}

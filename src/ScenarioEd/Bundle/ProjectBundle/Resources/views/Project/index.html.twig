@@ -1,13 +1,13 @@
 {% extends "::base.html.twig" %}
+  {% block title %}Project List{% endblock %}
 
-{% block body %}
-    <h1>Project list</h1>
-
+  {% block body %}
+    <h1>{{ block('title') }}</h1>	
     <table class="records_list">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Project_uri</th>
+                <th>Project URI</th>
                 <th>Actions</th>
             </tr>
         </thead>
