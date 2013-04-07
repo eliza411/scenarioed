@@ -123,6 +123,11 @@ class FeatureController extends BaseController
         }
 
         $feature = new Feature($file);
+        //Load the first FeatureNode for this feature in order to grab the title.
+        //We should check it exists and throw an exception if not but I'm avoiding that
+        //since we will probably not continue in this way due to problems accessing extensions.
+        $featureNode = $this->loadFeatures($project->getRepositoryUri(), $file)[0];
+        $feature->title = $featureNode->getTitle();
 
         $editForm = $this->createForm(new FeatureType(), $feature);
         $deleteForm = $this->createDeleteForm($file);
