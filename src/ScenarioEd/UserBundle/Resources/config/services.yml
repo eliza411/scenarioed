@@ -1,0 +1,7 @@
+parameters:
+#    scenario_ed_user.example.class: ScenarioEd\UserBundle\Example
+
+services:
+#    scenario_ed_user.example:
+#        class: %scenario_ed_user.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

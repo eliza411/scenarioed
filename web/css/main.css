@@ -83,8 +83,8 @@ a#title {
 
 .back {
     background-color: #800080;
-    font-w
 }
+
 
 tr, th {
     vertical-align: top;
@@ -117,4 +117,6 @@ td {
     color: #ccc;
 }
 
-
+.auth {
+    float: right;
+}

@@ -1,3 +1,18 @@
+scenario_ed_account:
+    resource: "@ScenarioEdAccountBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+scenario_ed_user:
+    resource: "@ScenarioEdUserBundle/Controller"
+    type: annotation
+    prefix:   /
+
+scenario_ed_security:
+    resource: "@ScenarioEdSecurityBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 scenario_ed_help:
     resource: "@ScenarioEdHelpBundle/Controller/"
     type:     annotation
@@ -11,6 +26,17 @@ scenario_ed_project:
 homepage:
     pattern:  /
     defaults: { _controller: ScenarioEdProjectBundle:Project:welcome }
+
+login:
+    pattern:  /project/login
+    defaults: { _controller: ScenarioEdSecurityBundle:Security:login }
+
+logout: 
+    pattern: /project/logout
+    defaults: { _controller: ScenarioEdSecurityBundle:Security:logout }
+
+login_check:
+    pattern:  /project/login_check
 
 # Internal routing configuration to handle ESI
 # ****** WARNING ******

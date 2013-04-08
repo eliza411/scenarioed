@@ -18,6 +18,15 @@
         Organizations | 
        <a href="{{ url('project') }}">Projects</a> | 
        <a href="{{ url('help') }}">Help</a>
+       <span class="auth">
+            {% if not app.user %}
+                <a href="{{ url('login') }}">Log in</a>
+            {% else %}
+                <a href="{{ url('logout') }}">Log out</a>
+            {% endif  %}
+       </span>
+                
+
        {% endblock %}	
     </div>
 
