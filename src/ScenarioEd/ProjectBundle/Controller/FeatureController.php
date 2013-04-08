@@ -167,7 +167,7 @@ class FeatureController extends BaseController
 
         if ($editForm->isValid()) {
             // Do update.
-
+            $this->get('session')->getFlashBag()->add('message', 'The Feature was successfully updated.');
             return $this->redirect($this->generateUrl('project_feature_show', array('project_id' => $project_id, 'file' => $file)));
         }
 

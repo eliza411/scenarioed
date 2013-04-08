@@ -164,7 +164,8 @@ class ProjectController extends BaseController
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('project_show', array('id' => $id)));
+         $this->get('session')->getFlashBag()->add('message', 'Your changes have been saved.');
+         return $this->redirect($this->generateUrl('project_show', array('id' => $id)));
         }
 
         return array(

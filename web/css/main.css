@@ -120,3 +120,13 @@ td {
 .auth {
     float: right;
 }
+
+.flash {
+    background-color: #EBD6FF;
+    border: 1px solid #3D1466;
+    border-radius: 16px 16px 16px 16px;
+    margin-bottom: 20px;
+    padding: 30px 28px;
+    font-size: 120%;
+    font-weight: bold;
+}
