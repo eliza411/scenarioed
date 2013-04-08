@@ -1,14 +1,14 @@
 <?php
 
-namespace ScenarioEd\Bundle\ProjectBundle\Controller;
+namespace ScenarioEd\ProjectBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use ScenarioEd\Bundle\ProjectBundle\Entity\Project;
-use ScenarioEd\Bundle\ProjectBundle\Form\ProjectType;
+use ScenarioEd\ProjectBundle\Entity\Project;
+use ScenarioEd\ProjectBundle\Form\ProjectType;
 
 
 /**

@@ -7,7 +7,7 @@
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Project URI</th>
+                <th>Project</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -15,7 +15,11 @@
         {% for entity in entities %}
             <tr>
                 <td><a href="{{ path('project_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-                <td>{{ entity.repositoryuri }}</td>
+                <td>
+                    <label>{{ entity.projectname}}: </label>
+                    {{ entity.projectdescription }}<br />
+                    {{ entity.repositoryuri }}
+                </td>
                 <td>
                     <ul>
                         <li>

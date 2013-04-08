@@ -1,6 +1,6 @@
 <?php
 
-namespace ScenarioEd\Bundle\ProjectBundle\Entity;
+namespace ScenarioEd\ProjectBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
 

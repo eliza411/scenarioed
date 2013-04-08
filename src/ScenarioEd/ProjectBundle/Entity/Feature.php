@@ -1,6 +1,6 @@
 <?php
 
-namespace ScenarioEd\Bundle\ProjectBundle\Entity;
+namespace ScenarioEd\ProjectBundle\Entity;
 
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Filesystem\Exception\IOException;

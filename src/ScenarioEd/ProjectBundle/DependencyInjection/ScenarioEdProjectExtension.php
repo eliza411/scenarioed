@@ -1,6 +1,6 @@
 <?php
 
-namespace ScenarioEd\Bundle\ProjectBundle\DependencyInjection;
+namespace ScenarioEd\ProjectBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;

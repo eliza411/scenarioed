@@ -6,7 +6,7 @@
 
     <!--
     <parameters>
-        <parameter key="scenario_ed_project.example.class">ScenarioEd\Bundle\ProjectBundle\Example</parameter>
+        <parameter key="scenario_ed_project.example.class">ScenarioEd\ProjectBundle\Example</parameter>
     </parameters>
 
     <services>

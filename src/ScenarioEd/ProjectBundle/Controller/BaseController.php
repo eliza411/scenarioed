@@ -1,6 +1,6 @@
 <?php
 
-namespace ScenarioEd\Bundle\ProjectBundle\Controller;
+namespace ScenarioEd\ProjectBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 

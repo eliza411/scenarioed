@@ -1,6 +1,6 @@
 <?php
 
-namespace ScenarioEd\Bundle\ProjectBundle;
+namespace ScenarioEd\ProjectBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 

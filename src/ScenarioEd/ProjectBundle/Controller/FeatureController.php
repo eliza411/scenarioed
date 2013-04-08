@@ -1,14 +1,14 @@
 <?php
 
-namespace ScenarioEd\Bundle\ProjectBundle\Controller;
+namespace ScenarioEd\ProjectBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use ScenarioEd\Bundle\ProjectBundle\Entity\Project;
-use ScenarioEd\Bundle\ProjectBundle\Entity\Feature;
-use ScenarioEd\Bundle\ProjectBundle\Form\FeatureType;
+use ScenarioEd\ProjectBundle\Entity\Project;
+use ScenarioEd\ProjectBundle\Entity\Feature;
+use ScenarioEd\ProjectBundle\Form\FeatureType;
 
 /**
  * Feature controller.
