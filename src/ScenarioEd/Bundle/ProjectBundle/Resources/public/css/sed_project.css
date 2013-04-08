@@ -1,0 +1,21 @@
+h1 {
+    background-color: #000;
+    color: #fff;
+}
+
+body {
+    font-size: 100%;
+    padding: 20px;
+}
+
+ul,ol {
+  margin-bottom: 12px;
+}
+
+li {
+    margin-bottom: 2px;
+}
+
+label {
+    margin-right: 5px;
+}
