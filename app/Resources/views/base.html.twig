@@ -1,28 +1,30 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>ScenarioEd - {% block title %}{% endblock %}</title>
-        {% block stylesheets %}
-            <link href="{{ asset('/bundles/framework/css/exception_layout.css') }}" type="text/css" rel="stylesheet" />
-            <link href="{{ asset('/bundles/framework/css/exception.css') }}" type="text/css" rel="stylesheet" />
-            <link href="{{ asset('/css/main.css') }}" type="text/css" rel="stylesheet" />
-        {% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-    </head>
-    <body>
-	<div id="header">
-	     {% block header %}
-		<a href="/" id="title"><h1>ScenarioEd</h1></a> | 
-		Organizations | 
-		<a href="/project">Projects</a> | 
-		<a href="/help">Help</a>
-	     {% endblock %}	
-	</div>
+  <head>
+    <meta charset="UTF-8" />
+    <title>ScenarioEd - {% block title %}{% endblock %}</title>
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    {% block stylesheets %}
+    <link href="{{ asset('/bundles/framework/css/exception_layout.css') }}" type="text/css" rel="stylesheet" />
+    <link href="{{ asset('/bundles/framework/css/exception.css') }}" type="text/css" rel="stylesheet" />
+    <link href="{{ asset('/css/main.css') }}" type="text/css" rel="stylesheet" />
+    {% endblock %}
+  </head>
 
-	<div id="content">
-	    {% block body %}{% endblock %}
-	</div>
-        {% block javascripts %}{% endblock %}
-    </body>
+  <body>
+    <div id="header">
+      {% block header %}
+        <a href="{{ url('homepage') }}" id="title"><h1>ScenarioEd</h1></a> | 
+        Organizations | 
+       <a href="{{ url('project') }}">Projects</a> | 
+       <a href="{{ url('help') }}">Help</a>
+       {% endblock %}	
+    </div>
+
+    <div id="content">
+      {% block body %}{% endblock %}
+    </div>
+
+    {% block javascripts %}{% endblock %}
+  </body>
 </html>
