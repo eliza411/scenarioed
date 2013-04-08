@@ -3,18 +3,10 @@
 
     {% block body %}
         <h1>{{ block('title') }}</h1>
+        <a href="{{ path('project') }}" class="action back">&larr; Project List</a>
         <form action="{{ path('project_create') }}" method="post" {{ form_enctype(form) }}>
             {{ form_widget(form) }}
-            <p>
-                <button type="submit">Create</button>
-            </p>
+                <button type="submit" class="action create">Create</button>
         </form>
 
-        <ul class="record_actions">
-            <li>
-                <a href="{{ path('project') }}">
-                Back to the list
-                </a>
-            </li>
-        </ul>
       {% endblock %}

@@ -2,7 +2,8 @@
     {% block title %}Feature: {{ feature.title }}{% endblock %}
 
     {% block body %}
-        <h1>{{ block('title') }}</h1>
+        <a href="{{ path('project_show', {'id': project.id}) }}" class="action back">&larr; Project</a>
+        <h1><span class="prepend">Feature: </span>{{ feature.title }}</h1>
           <table class="record_properties">
             <tbody>
                 <tr>
@@ -23,22 +24,9 @@
               </tbody>
           </table>
 
-          <ul class="record_actions">
-              <li>
-                  <a href="{{ path('project_show', {'id': project.id}) }}">
-                      Back to the project
-                  </a>
-              </li>
-              <li>
-                  <a href="{{ path('project_feature_edit', { 'project_id': project.id, 'file': feature.file }) }}">
-                      Edit
-                  </a>
-              </li>
-              <li>
-                  <form action="{{ path('project_feature_delete', { 'project_id': project.id, 'file': feature.file }) }}" method="post">
-                      {{ form_widget(delete_form) }}
-                      <button type="submit">Delete</button>
-                  </form>
-              </li>
-          </ul>
+          <a href="{{ path('project_feature_edit', { 'project_id': project.id, 'file': feature.file }) }}" class="action edit">Edit</a>
+          <form action="{{ path('project_feature_delete', { 'project_id': project.id, 'file': feature.file }) }}" method="post">
+               {{ form_widget(delete_form) }}
+                   <button type="submit" class="action delete">Delete</button>
+          </form>
   {% endblock %}

@@ -1,8 +1,9 @@
 {% extends "::base.html.twig" %}
-   {% block title %}Project{% endblock %}
+   {% block title %}Project: {{ entity.projectname}}{% endblock %}
 
    {% block body %}
-     <h1>{{ block('title') }}</h1>
+     <h1><span class="prepend">Project: </span>{{ entity.projectname }}</h1>
+            <a href="{{ path('project') }}" class="action back">&larr; Project list</a>
      <table class="record_properties">
         <tbody>
             <tr>
@@ -10,7 +11,7 @@
                 <td>{{ entity.id }}</td>
             </tr>
             <tr>
-                <th>Repository_uri</th>
+                <th>Repository</th>
                 <td>{{ entity.repositoryuri }}</td>
             </tr>
             <tr>
@@ -34,28 +35,10 @@
             </tr>
         </tbody>
     </table>
-
-    <ul class="record_actions">
-        <li>
-            <a href="{{ path('project') }}">
-                Back to the list
-            </a>
-        </li>
-        <li>
-            <a href="{{ path('project_edit', { 'id': entity.id }) }}">
-                Edit
-            </a>
-        </li>
-        <li>
-            <a href="{{ path('project_feature_new', { 'project_id': entity.id }) }}">
-                Create a new entry
-            </a>
-        </li>
-        <li>
+            <a href="{{ path('project_edit', { 'id': entity.id }) }}" class="action edit">Edit Project</a>
+            <a href="{{ path('project_feature_new', { 'project_id': entity.id }) }}" class="action create">+ Create new feature</a>
             <form action="{{ path('project_delete', { 'id': entity.id }) }}" method="post">
                 {{ form_widget(delete_form) }}
-                <button type="submit">Delete</button>
+                <button type="submit" class="action delete">Delete</button>
             </form>
-        </li>
-    </ul>
 {% endblock %}

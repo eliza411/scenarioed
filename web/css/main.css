@@ -12,7 +12,15 @@ li {
 }
 
 label {
-    margin-right: 5px;
+    margin: 20px 5px 10px 0;
+    display: block;
+    font-weight: bold;
+    font-size: 110%;
+}
+
+textarea#scenarioed__projectbundle_projecttype_project_description {
+    width: 255px;
+    height: 100px;
 }
 
 a#title {
@@ -37,6 +45,76 @@ a#title {
     margin-bottom: 20px;
 }
 
-.button {
-	padding: 0.75em 1em;
+.action { 
+    float: right;
 }
+
+.action, .action:active {
+    background: none repeat scroll 0 0 #008A2E;
+    border: medium none;
+    border-radius: 8px 8px 8px 8px;
+    box-shadow: none;
+    color: #F1F1F1;
+    cursor: pointer;
+    display: inline-block;
+    font-weight: bold;
+    font-size: 1.2em;
+    line-height: 1em;
+    margin: 10px;
+    padding: 10px 18px;
+    outline: 0 none;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    text-rendering: optimizelegibility;
+    text-shadow: none;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease-in-out 0s;
+    width: auto;
+}
+
+.create, .save {
+    background-color: #008A2E;
+}
+
+.delete {
+    background-color: #C00;
+}
+
+.back {
+    background-color: #800080;
+    font-w
+}
+
+tr, th {
+    vertical-align: top;
+    padding: 10px;
+}
+
+th {
+    text-align: left;
+}
+
+td {
+    border: 1px solid #eee;
+    padding: 5px 15px;
+}
+
+.records_list h2, .records_list p {
+    margin: 0;
+}
+
+.records_list h2 {
+    font-size: 110%;
+}
+
+.records_list a {
+    text-decoration: none;
+    margin: 0;
+}
+
+.prepend {
+    color: #ccc;
+}
+
+

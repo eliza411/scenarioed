@@ -1,27 +1,17 @@
 {% extends "::base.html.twig" %}
-   {% block title %}Edit Project{% endblock %}
+   {% block title %}Project: Edit{% endblock %}
 
    {% block body %}
-     <h1>{{ block('title') }}</h1>
-
-     <form action="{{ path('project_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
+    <h1><span class="prepend">Project: </span>Edit</h1>
+    <a href="{{ path('project') }}" class="action back">&larr; Project list</a>
+    <form action="{{ path('project_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
         {{ form_widget(edit_form) }}
-        <p>
-            <button type="submit">Edit</button>
-        </p>
+        <button type="submit" class="action save">Save</button>
     </form>
 
-    <ul class="record_actions">
-        <li>
-            <a href="{{ path('project') }}">
-                Back to the list
-            </a>
-        </li>
-        <li>
-            <form action="{{ path('project_delete', { 'id': entity.id }) }}" method="post">
-                {{ form_widget(delete_form) }}
-                <button type="submit">Delete</button>
-            </form>
-        </li>
-    </ul>
-{% endblock %}
+    <form action="{{ path('project_delete', { 'id': entity.id }) }}" method="post">
+        {{ form_widget(delete_form) }}
+        <button type="submit" class="action delete">Delete</button>
+    </form>
+
+  {% endblock %}
