@@ -9,6 +9,11 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use ScenarioEd\ProjectBundle\Entity\Project;
 use ScenarioEd\ProjectBundle\Form\ProjectType;
+use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\Filesystem\Exception\IOException;
+use Symfony\Component\Yaml\Parser;
+use Symfony\Component\Yaml\Yaml;
+use Symfony\Component\Yaml\Dumper;
 
 
 /**
@@ -36,7 +41,6 @@ class ProjectController extends BaseController
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
-
         $entities = $em->getRepository('ScenarioEdProjectBundle:Project')->findAll();
 
         return array(
@@ -98,15 +102,40 @@ class ProjectController extends BaseController
         $entity  = new Project();
         $form = $this->createForm(new ProjectType(), $entity);
         $form->bind($request);
-
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('project_show', array('id' => $entity->getId())));
-        }
+       // the base dir should probably be configurable in yml somewhere
+        $base_dir = "/tmp/";
+        $user_id = "user-" . $this->getUser()->getId();
+        $project_id = array('id' => $entity->getId());
+        $fs_path = $base_dir . $user_id . "/project-" . $project_id['id'];
+        $config_file = 'behat.local.yml';
+        $behat_config = $fs_path . "/" .  $config_file;
+        
 
+
+        //write the file
+        $fs = new Filesystem();
+        $fs->mkdir($fs_path);
+        $fs->touch($behat_config);
+
+        $yaml = Yaml::parse($behat_config);
+        $behatinfo = array(
+            'foo' => 'bar',
+            'bar' => array('foo' => 'bar', 'bar' => 'baz'),
+         );
+        $dumper = new Dumper();
+        $yaml = $dumper->dump($behatinfo,2);
+        file_put_contents($behat_config, $yaml);
+
+        
+        $this->get('session')->getFlashBag()->add('message', 'Added file '. $behat_config);
+        return $this->redirect($this->generateUrl('project_show', array('id' => $entity->getId())));
+            
+        }
         return array(
             'entity' => $entity,
             'form'   => $form->createView(),

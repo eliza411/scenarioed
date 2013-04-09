@@ -1,6 +1,7 @@
 {% extends "::base.html.twig" %}
     {% block title %}Feature: {{ feature.title }}{% endblock %}
 
+
     {% block body %}
         <a href="{{ path('project_show', {'id': project.id}) }}" class="action back">&larr; Project</a>
         <h1><span class="prepend">Feature: </span>{{ feature.title }}</h1>
