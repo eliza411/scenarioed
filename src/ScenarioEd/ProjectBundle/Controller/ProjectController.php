@@ -108,10 +108,12 @@ class ProjectController extends BaseController
             $em->flush();
 
        // the base dir should probably be configurable in yml somewhere
-        $base_dir = "/tmp/";
+        $base_dir = "/tmp";
+        $test_url = array('base_url' => $entity->getBaseUrl()); 
         $user_id = "user-" . $this->getUser()->getId();
         $project_id = array('id' => $entity->getId());
-        $fs_path = $base_dir . $user_id . "/project-" . $project_id['id'];
+        # $fs_path = $base_dir . $user_id . "/project-" . $project_id['id'];
+        $fs_path = $base_dir;
         $config_file = 'behat.local.yml';
         $behat_config = $fs_path . "/" .  $config_file;
         
@@ -124,15 +126,26 @@ class ProjectController extends BaseController
 
         $yaml = Yaml::parse($behat_config);
         $behatinfo = array(
-            'foo' => 'bar',
-            'bar' => array('foo' => 'bar', 'bar' => 'baz'),
+            'default' => array(
+                'paths' => array(
+                   'features' => 'features'
+                ),
+            'extensions' => array(
+                'Behat\MinkExtension\Extension' => array(
+                  'goutte' => 0,
+                  'selenium2' => 0,
+                  'base_url' => $test_url['base_url'],
+                ),
+              ),
+            ),
          );
         $dumper = new Dumper();
-        $yaml = $dumper->dump($behatinfo,2);
+        $yaml = $dumper->dump($behatinfo,5);
         file_put_contents($behat_config, $yaml);
 
         
         $this->get('session')->getFlashBag()->add('message', 'Added file '. $behat_config);
+        $this->get('session')->getFlashBag()->add('message', 'Site to test: '. $test_url['base_url']);
         return $this->redirect($this->generateUrl('project_show', array('id' => $entity->getId())));
             
         }
@@ -157,6 +170,32 @@ class ProjectController extends BaseController
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Project entity.');
         }
+
+        $base_dir = "/tmp";
+        $test_url = array('base_url' => $entity->getBaseUrl()); 
+        $user_id = "user-" . $this->getUser()->getId();
+        $project_id = array('id' => $entity->getId());
+        # $fs_path = $base_dir . $user_id . "/project-" . $project_id['id'];
+        $fs_path = $base_dir;
+        $config_file = 'behat.local.yml';
+        $behat_config = $fs_path . "/" .  $config_file;
+        
+
+
+        //write the file
+        $fs = new Filesystem();
+        $fs->mkdir($fs_path);
+        $fs->touch($behat_config);
+
+        $yaml = Yaml::parse($behat_config);
+        $this->get('session')->getFlashBag()->add('message', print_r($yaml,1) );
+        $this->get('session')->getFlashBag()->add('message', 'Site to test: '. $test_url['base_url']);
+
+        $yaml['default']['extensions']['Behat\MinkExtension\Extension']['base_url'] = $test_url['base_url'];
+        
+        $dumper = new Dumper();
+        $yaml = $dumper->dump($yaml,5);
+        file_put_contents($behat_config, $yaml);
 
         $editForm = $this->createForm(new ProjectType(), $entity);
         $deleteForm = $this->createDeleteForm($id);
