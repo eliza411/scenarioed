@@ -58,10 +58,20 @@ class ProjectController extends BaseController
     {
         $em = $this->getDoctrine()->getManager();
         $entity = $em->getRepository('ScenarioEdProjectBundle:Project')->find($id);
-        $features = $this->loadFeatures($entity->getRepositoryUri(), '');
+
+        //For now check that behat is installed in the RepoURI.
+        $fs = new Filesystem();
+        $behat_exec = $entity->getRepositoryUri() . DIRECTORY_SEPARATOR . "bin/behat";
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Project entity.');
+        }
+
+        if ($fs->exists($behat_exec)) {
+          $features = $this->loadFeatures($entity->getRepositoryUri(), '');
+        } else {
+          $features = array();
+          $this->get('session')->getFlashBag()->add('message', "Behat is not installed correctly at $behat_exec.");
         }
 
         $deleteForm = $this->createDeleteForm($id);

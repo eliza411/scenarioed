@@ -204,8 +204,8 @@ class Project
                     ),
                 'extensions' => array(
                     'Behat\MinkExtension\Extension' => array(
-                      'goutte' => 0,
-                      'selenium2' => 0,
+                      'goutte' => null,
+                      'selenium2' => null,
                       'base_url' => $settings['base_url'],
                     ),
                   ),
@@ -218,7 +218,8 @@ class Project
         // Write the file
         if ($fs->exists($project_dir. '/bin')) {
         } else {
-//        $fs->symlink('/home/melissa/example/bin', $project_dir. '/', true);
+          $fs->mirror('/home/melissa/example', $project_dir. '/');
+          $fs->chmod($project_dir. '/bin/behat', 744);
         }
         $dumper = new Dumper();
         $yaml = $dumper->dump($yaml,5);
