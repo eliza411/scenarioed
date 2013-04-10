@@ -107,8 +107,7 @@ class ProjectController extends BaseController
             $em->persist($entity);
             $em->flush();
 
-#        $this->get('session')->getFlashBag()->add('message', 'Added file '. $behat_config);
-#        $this->get('session')->getFlashBag()->add('message', 'Site to test: '. $test_url['base_url']);
+        $this->get('session')->getFlashBag()->add('message', 'Congratulations on your new project!');
         return $this->redirect($this->generateUrl('project_show', array('id' => $entity->getId())));
             
         }

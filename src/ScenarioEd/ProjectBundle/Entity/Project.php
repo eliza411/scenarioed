@@ -78,6 +78,7 @@ class Project
      */
     public function setRepositoryUri($repositoryUri)
     {
+
         $this->repository_uri = $repositoryUri;
     
         return $this;
@@ -172,9 +173,12 @@ class Project
     {
         // Build config file location 
         $fs = new Filesystem();
-        $project_dir = '/tmp/' . $this->id;
+        $project_dir = DIRECTORY_SEPARATOR.'home/melissa/projects'.DIRECTORY_SEPARATOR.$this->id;
         $config_file = 'behat.yml';
-        $behat_config = $project_dir . '/' . $config_file;
+        $shell_file = 'jenkins.sh';
+        $shell_config = $project_dir.DIRECTORY_SEPARATOR.$shell_file;
+        $behat_config = $project_dir.DIRECTORY_SEPARATOR.$config_file;
+        $this->repository_uri = $project_dir; // TODO: This should not be displayed on the form
         
         // Get config data
         $settings = array('base_url' => $this->base_url);
@@ -184,14 +188,15 @@ class Project
 
             // Update existing file
             $yaml = Yaml::parse($behat_config);
-            $yaml['default']['extensions']['Behat\MinkExtension\Extension']['base_url'] = $settings['base_url'];
+//            $yaml['default']['extensions']['Behat\MinkExtension\Extension']['base_url'] = $settings['base_url'];
+            $shell = "#! /bin/bash\nbin/behat";
 
         } else {
 
             // Create the file
-            $project_dir = '/tmp/' . $this->id;
             $fs->mkdir($project_dir);
             $fs->touch($behat_config);
+            $fs->touch($shell_config);
             $yaml = array(
                 'default' => array(
                     'paths' => array(
@@ -206,14 +211,18 @@ class Project
                   ),
                 ),
              );
+             $shell = 'Woot!';
 
         }
 
-        // Write the file 
+        // Write the file
+        if ($fs->exists($project_dir. '/bin')) {
+        } else {
+//        $fs->symlink('/home/melissa/example/bin', $project_dir. '/', true);
+        }
         $dumper = new Dumper();
         $yaml = $dumper->dump($yaml,5);
         file_put_contents($behat_config, $yaml);
-
-   
+        file_put_contents($shell_config, $shell);
     }
 }

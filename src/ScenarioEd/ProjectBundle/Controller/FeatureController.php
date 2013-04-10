@@ -88,7 +88,7 @@ class FeatureController extends BaseController
         $form->bind($request);
 
         $data = $form->getData();
-        $entity  = new Feature($project->getRepositoryURI() . 'features/' . $data['file']);
+        $entity  = new Feature($project->getRepositoryURI().DIRECTORY_SEPARATOR.'features/' . $data['file']);
 
         if ($form->isValid()) {
             $entity->create();

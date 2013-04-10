@@ -3,7 +3,8 @@
 
    {% block body %}
      <h1><span class="prepend">Project: </span>{{ entity.projectname }}</h1>
-            <a href="{{ path('project') }}" class="action back">&larr; Project list</a>
+            <a href="{{ path('project_edit', { 'id': entity.id }) }}" class="action edit">Edit Project</a> 
+            <a href="{{ path('project') }}" class="action back">&larr; Project list</a> 
      <table class="record_properties">
         <tbody>
             <tr>
@@ -35,7 +36,6 @@
             </tr>
         </tbody>
     </table>
-            <a href="{{ path('project_edit', { 'id': entity.id }) }}" class="action edit">Edit Project</a>
             <a href="{{ path('project_feature_new', { 'project_id': entity.id }) }}" class="action create">+ Create new feature</a>
             <form action="{{ path('project_delete', { 'id': entity.id }) }}" method="post">
                 {{ form_widget(delete_form) }}
