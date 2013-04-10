@@ -3,12 +3,20 @@
 namespace ScenarioEd\ProjectBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Events;
+use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\Yaml\Parser;
+use Symfony\Component\Yaml\Yaml;
+use Symfony\Component\Yaml\Dumper;
+
+
 
 /**
  * Project
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="ScenarioEd\ProjectBundle\Entity\ProjectRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Project
 {
@@ -27,6 +35,7 @@ class Project
      *
      * @ORM\Column(name="repository_uri", type="string", length=255)
      */
+    // TODO: This needs validation
     private $repository_uri;
 
 
@@ -153,5 +162,58 @@ class Project
     public function getBaseUrl()
     {
         return $this->base_url;
+    }
+
+    /**
+     * @ORM\PostLoad
+     */
+    // TODO: this needs to be made conditional on being on a create or edit form; it's getting called on the main /project page
+    public function configureBehat()
+    {
+        // Build config file location 
+        $fs = new Filesystem();
+        $project_dir = '/tmp/' . $this->id;
+        $config_file = 'behat.yml';
+        $behat_config = $project_dir . '/' . $config_file;
+        
+        // Get config data
+        $settings = array('base_url' => $this->base_url);
+
+
+        if ($fs->exists($behat_config)) {
+
+            // Update existing file
+            $yaml = Yaml::parse($behat_config);
+            $yaml['default']['extensions']['Behat\MinkExtension\Extension']['base_url'] = $settings['base_url'];
+
+        } else {
+
+            // Create the file
+            $project_dir = '/tmp/' . $this->id;
+            $fs->mkdir($project_dir);
+            $fs->touch($behat_config);
+            $yaml = array(
+                'default' => array(
+                    'paths' => array(
+                       'features' => 'features'
+                    ),
+                'extensions' => array(
+                    'Behat\MinkExtension\Extension' => array(
+                      'goutte' => 0,
+                      'selenium2' => 0,
+                      'base_url' => $settings['base_url'],
+                    ),
+                  ),
+                ),
+             );
+
+        }
+
+        // Write the file 
+        $dumper = new Dumper();
+        $yaml = $dumper->dump($yaml,5);
+        file_put_contents($behat_config, $yaml);
+
+   
     }
 }
