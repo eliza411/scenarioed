@@ -10,7 +10,11 @@
         <button type="submit" class="action save">Save</button>
         </form>
 
-        <form action="{{ path('project_feature_delete', { 'project_id': project.id, 'file': feature.file }) }}" method="post">
+        <form action="{{ path('project_run', { 'id': entity.id }) }}" method="post">
+        <button type="submit" class="action run">Run</button>
+        </form>
+
+    <form action="{{ path('project_feature_delete', { 'project_id': project.id, 'file': feature.file }) }}" method="post">
             {{ form_widget(delete_form) }}
                 <button type="submit" class="action delete">Delete</button>
         </form>

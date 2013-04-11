@@ -225,4 +225,32 @@ class ProjectController extends BaseController
             ->getForm()
         ;
     }
+
+    /**
+     * Run some tests
+     *
+     * @Route("/{id}/run", name="project_run")
+     * @ Method("POST")
+     * @Template("ScenarioEdProjectBundle:Project:run.html.twig")
+     */
+    public function runAction(Request $request, $id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $entity = $em->getRepository('ScenarioEdProjectBundle:Project')->find($id);
+
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find Project entity.');
+        }
+
+        $output = array();
+        #$output = $this->execute($entity->getRepositoryUri() . "/bin/behat");
+        exec($entity->getRepositoryUri() . "/jenkins.sh", $output);
+
+        return array(
+            'entity'   => $entity,
+            'output'   => html_entity_decode(implode("<br />", $output)),
+        );
+
+    }
 }

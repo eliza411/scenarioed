@@ -4,6 +4,12 @@
    {% block body %}
     <h1><span class="prepend">Project: </span>Edit</h1>
     <a href="{{ path('project') }}" class="action back">&larr; Project list</a>
+
+    <form action="{{ path('project_run', { 'id': entity.id }) }}" method="post">
+        <button type="submit" class="action run">Run</button>
+    </form>
+
+
     <form action="{{ path('project_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
         {{ form_widget(edit_form) }}
         <button type="submit" class="action save">Save</button>
