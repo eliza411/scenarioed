@@ -113,8 +113,10 @@ class ProjectController extends BaseController
         $form = $this->createForm(new ProjectType(), $entity);
         $form->bind($request);
         if ($form->isValid()) {
+            $form_id = array('id' => $entity->getId());
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
+            $entity->configureBehat();
             $em->flush();
 
         $this->get('session')->getFlashBag()->add('message', 'Congratulations on your new project!');
@@ -175,6 +177,7 @@ class ProjectController extends BaseController
         $editForm->bind($request);
 
         if ($editForm->isValid()) {
+            $entity->configureBehat();
             $em->persist($entity);
             $em->flush();
 

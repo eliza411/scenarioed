@@ -49,7 +49,7 @@ class Project
     /**
      * @var string
      *
-     * @ORM\Column(name="project_description", type="text")
+     * @ORM\Column(name="project_description", type="text", nullable=true)
      */
     private $project_description;
 
@@ -80,7 +80,7 @@ class Project
     {
 
         $this->repository_uri = $repositoryUri;
-    
+ 
         return $this;
     }
 
@@ -165,20 +165,17 @@ class Project
         return $this->base_url;
     }
 
-    /**
-     * @ORM\PostLoad
-     */
-    // TODO: this needs to be made conditional on being on a create or edit form; it's getting called on the main /project page
+
     public function configureBehat()
     {
         // Build config file location 
         $fs = new Filesystem();
-        $project_dir = DIRECTORY_SEPARATOR.'home/melissa/projects'.DIRECTORY_SEPARATOR.$this->id;
+        $project_dir = '/home/melissa/projects'.DIRECTORY_SEPARATOR.$this->id;
         $config_file = 'behat.yml';
         $shell_file = 'jenkins.sh';
         $shell_config = $project_dir.DIRECTORY_SEPARATOR.$shell_file;
         $behat_config = $project_dir.DIRECTORY_SEPARATOR.$config_file;
-        $this->repository_uri = $project_dir; // TODO: This should not be displayed on the form
+        $this->repository_uri = $project_dir;
         
         // Get config data
         $settings = array('base_url' => $this->base_url);
@@ -226,4 +223,5 @@ class Project
         file_put_contents($behat_config, $yaml);
         file_put_contents($shell_config, $shell);
     }
+
 }

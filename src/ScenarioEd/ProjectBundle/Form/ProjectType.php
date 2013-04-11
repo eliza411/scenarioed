@@ -12,8 +12,8 @@ class ProjectType extends AbstractType
     {
         $builder
             ->add('project_name')
-            ->add('project_description')
-            ->add('repository_uri')
+            ->add('project_description', 'textarea', array('required' => false))
+            ->add('repository_uri','hidden', array('required' => false))
             ->add('base_url')
         ;
     }
