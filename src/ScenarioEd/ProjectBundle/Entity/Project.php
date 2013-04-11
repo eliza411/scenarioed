@@ -170,7 +170,7 @@ class Project
     {
         // Build config file location 
         $fs = new Filesystem();
-        $project_dir = '/home/melissa/projects'.DIRECTORY_SEPARATOR.$this->id;
+        $project_dir = '/home/melissa/projects'.DIRECTORY_SEPARATOR.'project-'.$this->id;
         $config_file = 'behat.yml';
         $shell_file = 'jenkins.sh';
         $shell_config = $project_dir.DIRECTORY_SEPARATOR.$shell_file;
