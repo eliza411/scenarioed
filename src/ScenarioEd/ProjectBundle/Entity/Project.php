@@ -188,7 +188,7 @@ class Project
 
             // Update existing file
             $yaml = Yaml::parse($behat_config);
-//            $yaml['default']['extensions']['Behat\MinkExtension\Extension']['base_url'] = $settings['base_url'];
+            $yaml['default']['extensions']['Behat\MinkExtension\Extension']['base_url'] = $settings['base_url'];
             $shell = "#! /bin/bash\nbin/behat";
 
         } else {
