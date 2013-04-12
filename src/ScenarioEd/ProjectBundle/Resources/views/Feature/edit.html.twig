@@ -10,7 +10,7 @@
         <button type="submit" class="action save">Save</button>
         </form>
 
-        <form action="{{ path('project_run', { 'id': entity.id }) }}" method="post">
+        <form action="{{ path('project_run', { 'id': project.id, 'feature': feature.file }) }}" method="post">
         <button type="submit" class="action run">Run</button>
         </form>
 

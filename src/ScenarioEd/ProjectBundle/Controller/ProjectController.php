@@ -235,6 +235,7 @@ class ProjectController extends BaseController
      */
     public function runAction(Request $request, $id)
     {
+        $feature = $file = $request->query->get('feature');
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('ScenarioEdProjectBundle:Project')->find($id);
@@ -245,7 +246,11 @@ class ProjectController extends BaseController
 
         $output = array();
         #$output = $this->execute($entity->getRepositoryUri() . "/bin/behat");
-        exec($entity->getRepositoryUri() . "/jenkins.sh", $output);
+        if ($feature) {
+          exec($entity->getRepositoryUri() . "/jenkins.sh $feature", $output);
+        } else {
+          exec($entity->getRepositoryUri() . "/jenkins.sh", $output);
+        }
 
         return array(
             'entity'   => $entity,

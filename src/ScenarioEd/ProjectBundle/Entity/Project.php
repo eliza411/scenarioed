@@ -186,7 +186,7 @@ class Project
             // Update existing file
             $yaml = Yaml::parse($behat_config);
             $yaml['default']['extensions']['Behat\MinkExtension\Extension']['base_url'] = $settings['base_url'];
-            $shell = "#! /bin/bash\nbin/behat";
+            $shell = "#! /bin/bash\ncd $project_dir\nbin/behat $1 --no-snippets --no-paths\n";
 
         } else {
 
@@ -216,7 +216,7 @@ class Project
         if ($fs->exists($project_dir. '/bin')) {
         } else {
           $fs->mirror('/home/melissa/example', $project_dir. '/');
-          $fs->chmod($project_dir. '/bin/behat', 744);
+          $fs->chmod($project_dir. '/bin/behat', 755);
         }
         $dumper = new Dumper();
         $yaml = $dumper->dump($yaml,5);

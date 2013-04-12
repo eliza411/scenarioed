@@ -64,3 +64,9 @@ fos_user:
     db_driver: orm
     firewall_name: secure_area
     user_class: ScenarioEd\UserBundle\Entity\User 
+
+# Learning about services
+services:
+    behat_config:
+        class: ScenarioEd\ProjectBundle\BehatConfig
+        arguments: [project_id]

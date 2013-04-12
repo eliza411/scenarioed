@@ -36,6 +36,9 @@
             </tr>
         </tbody>
     </table>
+    <form action="{{ path('project_run', { 'id': entity.id }) }}" method="post">
+        <button type="submit" class="action run">Run</button>
+    </form>
             <a href="{{ path('project_feature_new', { 'project_id': entity.id }) }}" class="action create">+ Create new feature</a>
             <form action="{{ path('project_delete', { 'id': entity.id }) }}" method="post">
                 {{ form_widget(delete_form) }}

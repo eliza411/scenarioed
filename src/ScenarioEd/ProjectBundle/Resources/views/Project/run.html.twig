@@ -1,0 +1,15 @@
+{% extends "::base.html.twig" %}
+   {% block title %}Project: Test Output{% endblock %}
+
+   {% block body %}
+    <h1><span class="prepend">Project: </span>Run</h1>
+    <a href="{{ path('project_show', { 'id': entity.id }) }}" class="action back">&larr; Project</a>
+    <pre>
+    {{ output|raw }}
+    </pre>
+
+    <form action="{{ path('project_run', { 'id': entity.id }) }}" method="post">
+        <button type="submit" class="action run">Run</button>
+    </form>
+
+  {% endblock %}
