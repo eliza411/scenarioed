@@ -235,7 +235,7 @@ class ProjectController extends BaseController
      */
     public function runAction(Request $request, $id)
     {
-        $feature = $file = $request->query->get('feature');
+        $feature = $request->query->get('feature');
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('ScenarioEdProjectBundle:Project')->find($id);

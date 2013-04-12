@@ -30,12 +30,14 @@ class FeatureController extends BaseController
 
         $em = $this->getDoctrine()->getManager();
         $project = $em->getRepository('ScenarioEdProjectBundle:Project')->find($project_id);
-        $features = $this->loadFeatures($project->getRepositoryUri(), $file);
-        $feature = $features[0];
 
         if (!$project) {
             throw $this->createNotFoundException('Unable to find Project entity.');
         }
+
+        $features = $this->loadFeatures($project->getRepositoryUri(), $file);
+        $feature = $features[0];
+
 
         $deleteForm = $this->createDeleteForm($file);
 
@@ -216,5 +218,37 @@ class FeatureController extends BaseController
             ->add('file', 'text')
             ->getForm()
         ;
+    }
+    /**
+     * Run some tests
+     *
+     * @Route("/run", name="feature_run")
+     * @ Method("POST")
+     * @Template("ScenarioEdProjectBundle:Feature:run.html.twig")
+     */
+    public function runAction($project_id)
+    {
+        $request = $this->getRequest();
+        $file = $request->query->get('feature');
+        $em = $this->getDoctrine()->getManager();
+
+        $project = $em->getRepository('ScenarioEdProjectBundle:Project')->find($project_id);
+
+        $features = $this->loadFeatures($project->getRepositoryUri(), $file);
+        $feature = $features[0];
+
+        if (!$project) {
+            throw $this->createNotFoundException('Unable to find Project entity.');
+        }
+
+        $output = array();
+        exec($project->getRepositoryUri() . "/jenkins.sh $file", $output);
+
+        return array(
+            'entity'   => $project,
+            'feature'  => $feature,
+            'output'   => html_entity_decode(implode("<br />", $output)),
+        );
+
     }
 }
