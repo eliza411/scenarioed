@@ -166,6 +166,9 @@ class Project
     }
 
 
+    /**
+     * @ORM\PostLoad
+     */
     public function configureBehat()
     {
         // Build config file location 
