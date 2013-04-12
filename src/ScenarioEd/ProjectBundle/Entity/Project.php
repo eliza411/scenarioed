@@ -216,7 +216,8 @@ class Project
         if ($fs->exists($project_dir. '/bin')) {
         } else {
           $fs->mirror('/home/melissa/example', $project_dir. '/');
-          $fs->chmod($project_dir. '/bin/behat', 755);
+          $fs->chmod($project_dir. '/bin/behat', 0755, 0000);
+          $fs->chmod($project_dir. '/jenkins.sh', 0755, 0000);
         }
         $dumper = new Dumper();
         $yaml = $dumper->dump($yaml,5);
