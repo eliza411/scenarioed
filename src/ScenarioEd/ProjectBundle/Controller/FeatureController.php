@@ -38,7 +38,6 @@ class FeatureController extends BaseController
         $features = $this->loadFeatures($project->getRepositoryUri(), $file);
         $feature = $features[0];
 
-
         $deleteForm = $this->createDeleteForm($file);
 
         return array(

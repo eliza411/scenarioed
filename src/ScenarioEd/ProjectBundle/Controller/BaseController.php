@@ -8,6 +8,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Behat\Behat\DependencyInjection\BehatExtension;
 use Behat\Behat\DependencyInjection\Configuration\Loader;
+use Symfony\Component\Finder\Finder;
 
 /**
  * Description of BaseController
@@ -66,8 +67,8 @@ class BaseController extends Controller {
     protected function loadFeatures($base, $path)
     {
         $gherkin = $this->createContainer($base)->get('gherkin');
-        return $gherkin->load($path);
+        $features = $gherkin->load($path);
+        return $features;
     }
 }
-
 ?>
