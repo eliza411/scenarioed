@@ -3,6 +3,7 @@
 
    {% block body %}
     <h1><span class="prepend">Results: </span>{{ feature.title }}</h1>
+    <a href="{{ path('project_feature_show', { 'project_id': entity.id, 'file': feature.file }) }}" class="action back">&larr; Feature</a>
     <a href="{{ path('project_show', { 'id': entity.id }) }}" class="action back">&larr; Project</a>
     <pre>
     {{ output|raw }}
