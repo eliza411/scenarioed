@@ -90,12 +90,11 @@ class FeatureController extends BaseController
 
         $data = $form->getData();
         $entity  = new Feature($project->getRepositoryURI().DIRECTORY_SEPARATOR.'features/' . $data['file']);
-
         if ($form->isValid()) {
             $entity->create();
             $entity->setContents("Feature: New feature\n");
 
-            return $this->redirect($this->generateUrl('project_show', array('id' => $project->getId())));
+            return $this->redirect($this->generateUrl('project_feature_edit', array('project_id' => $project->getId(), 'file'=>$project->getRepositoryUri() .'/features/'. $data['file'])));
         }
 
         return array(
@@ -115,6 +114,9 @@ class FeatureController extends BaseController
     {
         $request = $this->getRequest();
         $file = $request->query->get('file');
+        if (!$file) {
+          throw new \Exception("File path is required in the query string.");
+        }
 
         $em = $this->getDoctrine()->getManager();
         $project = $em->getRepository('ScenarioEdProjectBundle:Project')->find($project_id);
@@ -127,7 +129,11 @@ class FeatureController extends BaseController
         //Load the first FeatureNode for this feature in order to grab the title.
         //We should check it exists and throw an exception if not but I'm avoiding that
         //since we will probably not continue in this way due to problems accessing extensions.
-        $featureNode = $this->loadFeatures($project->getRepositoryUri(), $file)[0];
+        try {
+            $featureNode = $this->loadFeatures($project->getRepositoryUri(), $file)[0];
+        } catch (\Exception $e) {
+            throw new \Exception("Invalid feature file $file supplied. Unable to parse.");
+        }
         $feature->title = $featureNode->getTitle();
 
         $editForm = $this->createForm(new FeatureType(), $feature);
@@ -150,7 +156,7 @@ class FeatureController extends BaseController
      */
     public function updateAction(Request $request, $project_id)
     {
-        $request = $this->getRequest();
+        //$request = $this->getRequest();
         $file = $request->query->get('file');
 
         $em = $this->getDoctrine()->getManager();
@@ -169,7 +175,13 @@ class FeatureController extends BaseController
         if ($editForm->isValid()) {
             // Do update.
             $this->get('session')->getFlashBag()->add('message', 'The Feature was successfully updated.');
-            return $this->redirect($this->generateUrl('project_feature_show', array('project_id' => $project_id, 'file' => $file)));
+            if ($request->request->has('run')) {
+                //If the Save and Run button is pressed, save then run.
+                return $this->redirect($this->generateUrl('project_feature_run', array('project_id' => $project_id, 'feature' => $file)));
+            } else {
+                //Ifthe Save button is pressed, skip running
+                return $this->redirect($this->generateUrl('project_feature_show', array('project_id' => $project_id, 'file' => $file)));
+            }
         }
 
         return array(
@@ -221,8 +233,7 @@ class FeatureController extends BaseController
     /**
      * Run some tests
      *
-     * @Route("/run", name="feature_run")
-     * @ Method("POST")
+     * @Route("/run", name="project_feature_run")
      * @Template("ScenarioEdProjectBundle:Feature:run.html.twig")
      */
     public function runAction($project_id)
