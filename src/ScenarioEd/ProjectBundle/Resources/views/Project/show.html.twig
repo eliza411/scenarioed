@@ -1,15 +1,17 @@
 {% extends "::base.html.twig" %}
    {% block title %}Project: {{ entity.projectname}}{% endblock %}
+   {% block breadcrumbs %}{{entity.projectname}}{% endblock%}
+
 
    {% block body %}
-     <h1><span class="prepend">Project: </span>{{ entity.projectname }}</h1>
-     <p>To run a single feature (or to edit or delete), click the title, then choose Run. //TODO: This needs links to go directly to edit or run.</p>
           {# <a href="{{ path('project_edit', { 'id': entity.id }) }}" class="action edit">Edit Project</a> #}
           {# <a href="{{ path('project') }}" class="action back">&larr; Project list</a> #} 
             <a href="{{ path('project_feature_new', { 'project_id': entity.id }) }}" class="action create">+ Create new feature</a>
    <form action="{{ path('project_run', { 'id': entity.id }) }}" method="post">
        <button type="submit" class="action run">Run all features</button>
-   </form>
+      <h1><span class="prepend">Project: </span>{{ entity.projectname }}</h1>
+     <p>To run a single feature (or to edit or delete), click the title, then choose Run. //TODO: This needs links to go directly to edit or run.</p>
+  </form>
       <table class="record_properties">
         <tbody>
             <tr>
@@ -26,8 +28,10 @@
                     <ul>
                         {% for feature in features %}
                         <li>
-                <a href="{{ path('project_feature_show', {'project_id': entity.id, 'file': feature.file }) }}">Feature: {{ feature.title }}</a> | 
-                                  <a href="{{ path('project_feature_edit', {'project_id': entity.id, 'file': feature.file }) }}">edit</a>
+                <a href="{{ path('project_feature_show', {'project_id': entity.id, 'file': feature.file }) }}">Feature: {{ feature.title }}</a>  
+                                  <a href="{{ path('project_feature_edit', {'project_id': entity.id, 'file': feature.file }) }}"><img src="{{ asset('css/edit-32x.png') }}"></a>
+<a href="{{ path('project_feature_run',{'project_id': entity.id, 'feature': feature.file }) }}"><img src="{{ asset('css/run.png') }}"></a>
+
                             <ul>
                                 {% for scenario in feature.scenarios %}
                                     <li>Scenario: {{ scenario.title }}</li>

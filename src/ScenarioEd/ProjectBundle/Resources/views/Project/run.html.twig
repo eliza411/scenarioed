@@ -4,6 +4,10 @@
    {% block body %}
     <a href="{{ path('project_show', { 'id': entity.id }) }}" class="action back">&larr; Project</a>
     <h1><span class="prepend">Results: </span>{{ entity.projectname}}</h1>
+    <p>TODO: This page will eventually contain links to the features for iterative editing. Right now we have to go back to the Project.</p>
+    <h2>Test Results: </h2>
+
+
     <pre>
     {{ output|raw }}
     </pre>

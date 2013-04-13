@@ -23,7 +23,7 @@ textarea#scenarioed__projectbundle_projecttype_project_description {
     height: 100px;
 }
 
-a#title {
+#title {
     text-decoration: none;
     padding-top: 0;
 }
@@ -48,6 +48,7 @@ a#title {
 .action { 
     float: right;
 }
+
 
 .action, .action:active {
     background: none repeat scroll 0 0 #008A2E;
@@ -81,8 +82,12 @@ a#title {
     background-color: #C00;
 }
 
-.back {
+ .back {
     background-color: #800080;
+}
+
+.run {
+    background-color: #F60;
 }
 
 

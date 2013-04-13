@@ -2,6 +2,7 @@
   {% block title %}Projects {% endblock %}
 
   {% block body %}
+    <a href="{{ path('project_new') }}" class="action create">+ Create new project</a>
     <h1>{{ block('title') }}</h1>	
     <table class="records_list">
         <thead>
@@ -17,18 +18,16 @@
                 <td><a href="{{ path('project_show', { 'id': entity.id }) }}">{{ entity.id }}</a> 
 
 
-</td>
+                </td>
                 <td>
                     <h2><a href="{{ path('project_show', { 'id': entity.id }) }}">{{ entity.projectname}}</a></h2>
                     <p>{{ entity.repositoryuri }}</p>
                 </td>
                 <td>
-                            <a href="{{ path('project_show', { 'id': entity.id }) }}">View</a> | 
                             <a href="{{ path('project_edit', { 'id': entity.id }) }}">Edit</a>
                 </td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
-    <a href="{{ path('project_new') }}" class="action create">+ Create new project</a>
 {% endblock %}
