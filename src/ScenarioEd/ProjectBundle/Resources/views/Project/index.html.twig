@@ -14,7 +14,10 @@
         <tbody>
         {% for entity in entities %}
             <tr>
-                <td><a href="{{ path('project_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td><a href="{{ path('project_show', { 'id': entity.id }) }}">{{ entity.id }}</a> 
+
+
+</td>
                 <td>
                     <h2><a href="{{ path('project_show', { 'id': entity.id }) }}">{{ entity.projectname}}</a></h2>
                     <p>{{ entity.repositoryuri }}</p>

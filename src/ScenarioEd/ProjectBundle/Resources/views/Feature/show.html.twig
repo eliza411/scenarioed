@@ -3,10 +3,7 @@
 
 
     {% block body %}
-        <form action="{{ path('project_feature_run', { 'project_id': project.id, 'feature': feature.file }) }}" method="post">
-            <button type="submit" class="action run">Run</button>
-        </form>
-        <a href="{{ path('project_show', {'id': project.id}) }}" class="action back">&larr; Project</a> 
+       <a href="{{ path('project_show', {'id': project.id}) }}" class="action back">&larr; Project</a> 
       <h1><span class="prepend">Feature: </span>{{ feature.title }}</h1>
           <table class="record_properties">
             <tbody>
@@ -28,7 +25,10 @@
               </tbody>
           </table>
 
-          <a href="{{ path('project_feature_edit', { 'project_id': project.id, 'file': feature.file }) }}" class="action edit">Edit</a>
+        <form action="{{ path('project_feature_run', { 'project_id': project.id, 'feature': feature.file }) }}" method="post">
+            <button type="submit" class="action run">Run</button>
+        </form>
+           <a href="{{ path('project_feature_edit', { 'project_id': project.id, 'file': feature.file }) }}" class="action edit">Edit</a>
           <form action="{{ path('project_feature_delete', { 'project_id': project.id, 'file': feature.file }) }}" method="post">
                {{ form_widget(delete_form) }}
                    <button type="submit" class="action delete">Delete</button>

@@ -26,9 +26,8 @@
                     <ul>
                         {% for feature in features %}
                         <li>
-                <a href="{{ path('project_feature_show', {'project_id': entity.id, 'file': feature.file }) }}">
-                                Feature: {{ feature.title }}
-                            </a>
+                <a href="{{ path('project_feature_show', {'project_id': entity.id, 'file': feature.file }) }}">Feature: {{ feature.title }}</a> | 
+                                  <a href="{{ path('project_feature_edit', {'project_id': entity.id, 'file': feature.file }) }}">edit</a>
                             <ul>
                                 {% for scenario in feature.scenarios %}
                                     <li>Scenario: {{ scenario.title }}</li>

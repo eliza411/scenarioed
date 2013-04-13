@@ -2,8 +2,8 @@
    {% block title %}Project: Test Output{% endblock %}
 
    {% block body %}
-    <h1><span class="prepend">Results: </span>{{ entity.projectname}}</h1>
     <a href="{{ path('project_show', { 'id': entity.id }) }}" class="action back">&larr; Project</a>
+    <h1><span class="prepend">Results: </span>{{ entity.projectname}}</h1>
     <pre>
     {{ output|raw }}
     </pre>
