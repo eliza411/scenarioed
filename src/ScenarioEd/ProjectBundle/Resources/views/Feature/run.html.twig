@@ -3,8 +3,9 @@
 
    {% block body %}
     <h1><span class="prepend">Results: </span>{{ feature.title }}</h1>
-    <a href="{{ path('project_feature_show', { 'project_id': entity.id, 'file': feature.file }) }}" class="action back">&larr; Feature</a>
-    <a href="{{ path('project_show', { 'id': entity.id }) }}" class="action back">&larr; Project</a>
+    <a href="{{ path('project_feature_show', { 'project_id': entity.id, 'file': feature.file }) }}" class="action back">&larr;View Feature</a>
+    <a href="{{ path('project_feature_edit', { 'project_id': entity.id, 'file': feature.file }) }}" class="action back">&larr;Edit Again</a>
+    <a href="{{ path('project_show', { 'id': entity.id }) }}" class="action back">&larr;Return to Project</a>
     <pre>
     {{ output|raw }}
     </pre>
