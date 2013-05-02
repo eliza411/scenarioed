@@ -1,12 +1,12 @@
 {% extends "::base.html.twig" %}
-   {% block title %}Feature: Test Output{% endblock %}
+    {% block title %}Feature: Test Output{% endblock %}
 
-   {% block body %}
-    <a href="{{ path('project_feature_show', { 'project_id': entity.id, 'file': feature.file }) }}" class="action back">&larr;View Feature</a>
-    <a href="{{ path('project_show', { 'id': entity.id }) }}" class="action back">&larr;Return to Project</a><br /> <br />
-    <h1><span class="prepend">Results: </span>{{ feature.title }}</h1>
-    <pre>
-    {{ output|raw }}
-    </pre>
-    <a href="{{ path('project_feature_edit', { 'project_id': entity.id, 'file': feature.file }) }}" class="action edit">Edit</a>
-  {% endblock %}
+    {% block body %}
+        <a href="{{ path('project_feature_show', { 'project_id': entity.id, 'file': feature.file }) }}" class="action back">&larr;View Feature</a>
+        <a href="{{ path('project_show', { 'id': entity.id }) }}" class="action back">&larr;Return to Project</a><br /> <br />
+        <h1><span class="prepend">Results: </span>{{ feature.title }}</h1>
+        <pre>
+            {{ output|raw }}
+        </pre>
+        <a href="{{ path('project_feature_edit', { 'project_id': entity.id, 'file': feature.file }) }}" class="action edit">Edit</a>
+   {% endblock %}

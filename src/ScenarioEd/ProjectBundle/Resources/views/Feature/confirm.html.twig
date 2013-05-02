@@ -1,0 +1,14 @@
+{% extends "::base.html.twig" %}
+    {% block title %}Feature: {{ feature.title }}{% endblock %}
+
+    {% block body %}
+        <h1>Confirm</h1>
+
+        <a href="{{ path('project_feature_show', { 'project_id': project.id, 'file': feature.file }) }}" class="action back">&larr; Feature</a>
+        <h1><span class="prepend">Feature: </span> {{ feature.title }}</h1>
+        <form action="{{ path('project_feature_delete', { 'project_id': project.id, 'file': feature.file, 'confirm': 'true' }) }}" method="post">
+            {{ form_widget(delete_form) }}
+            <button type="submit" class="action delete">Delete</button>
+        </form>
+
+{% endblock %}

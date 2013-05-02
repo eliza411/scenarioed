@@ -1,0 +1,31 @@
+#behat br {
+  display: none;
+}
+
+.failed {
+  color: red;
+}
+
+.passed {
+  color: green;
+}
+
+.skipped {
+  color: grey;
+}
+
+ol > li {
+  list-style: none;
+}
+
+.switchers {
+  display: none;
+}
+
+#behat h3 {
+  margin: 0 25px;
+}
+
+ol {
+  margin-top: 0;
+}

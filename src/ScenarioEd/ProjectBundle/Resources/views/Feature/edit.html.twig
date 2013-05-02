@@ -4,20 +4,15 @@
     {% block body %}
         <a href="{{ path('project_feature_show', { 'project_id': project.id, 'file': feature.file }) }}" class="action back">&larr; Feature</a>
         <h1><span class="prepend">Feature: </span> {{ feature.title }}</h1>
-
         <form action="{{ path('project_feature_update', { 'project_id': project.id, 'file': feature.file}) }}" method="post" {{ form_enctype(edit_form) }}>
-        {{ form_widget(edit_form) }}
-        <button type="submit" name="save" class="action save">Save</button>
-        <button type="submit" name="run" class="action run">Save and Run</button>
+            {{ form_widget(edit_form) }}
+            <button type="submit" name="save" class="action save">Save</button>
+            <button type="submit" name="run" class="action run">Save and Run</button>
         </form>
 
-{#        <form action="{{ path('project_run', { 'id': project.id, 'feature': feature.file }) }}" method="post">
-        <button type="submit" class="action run">Run</button>
-        </form>
-#}
-    <form action="{{ path('project_feature_delete', { 'project_id': project.id, 'file': feature.file }) }}" method="post">
+        <form action="{{ path('project_feature_delete', { 'project_id': project.id, 'file': feature.file }) }}" method="post">
             {{ form_widget(delete_form) }}
-                <button type="submit" class="action delete">Delete</button>
-    </form>
+            <button type="submit" class="action delete">Delete</button>
+        </form>
 
 {% endblock %}

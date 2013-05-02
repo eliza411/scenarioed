@@ -207,9 +207,16 @@ class FeatureController extends BaseController
 
         $feature = new Feature($file);
 
-
         if ($form->isValid()) {
-            $feature->delete();
+            if ($request->query->has('confirm')) {
+                //If the user has confirmed, perform the deletion
+                $feature->delete();
+                $this->get('session')->getFlashBag()->add('message', "$file BALETED!~");
+                return $this->redirect($this->generateUrl('project_show', array('id' => $project_id)));
+            } else {
+                //Ask the user to confirm
+                return $this->redirect($this->generateUrl('project_feature_confirm', array('project_id' => $project_id, 'file' => $file)));
+            }
         }
 
         return $this->redirect($this->generateUrl('project_show', array('id' => $project_id, 'file' => $file)));
@@ -261,4 +268,41 @@ class FeatureController extends BaseController
         );
 
     }
+
+    /**
+     * Confirm deletion of a feature
+     *
+     * @Route("/confirm", name="project_feature_confirm")
+     * @Template("ScenarioEdProjectBundle:Feature:confirm.html.twig")
+     * @Method("GET")
+     */
+    public function confirmAction($project_id)
+    {
+        $request = $this->getRequest();
+        $file = $request->query->get('file');
+        $em = $this->getDoctrine()->getManager();
+
+        $project = $em->getRepository('ScenarioEdProjectBundle:Project')->find($project_id);
+
+        $features = $this->loadFeatures($project->getRepositoryUri(), $file);
+        $feature = $features[0];
+
+        if (!$project) {
+            throw $this->createNotFoundException('Unable to find Project entity.');
+        }
+
+        $output = array();
+        $deleteForm = $this->createDeleteForm($file);
+
+        return array(
+            'project'   => $project,
+            'feature'  => $feature,
+            'delete_form' => $deleteForm->createView(),
+            'output'   => html_entity_decode(implode("<br />", $output)),
+        );
+
+    }
+
+
+
 }
