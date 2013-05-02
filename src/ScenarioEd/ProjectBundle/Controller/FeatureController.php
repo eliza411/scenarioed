@@ -212,7 +212,7 @@ class FeatureController extends BaseController
             $feature->delete();
         }
 
-        return $this->redirect($this->generateUrl('project_feature_show', array('project_id' => $project_id, 'file' => $file)));
+        return $this->redirect($this->generateUrl('project_show', array('id' => $project_id, 'file' => $file)));
     }
 
     private function createDeleteForm($file)
