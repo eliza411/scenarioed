@@ -211,7 +211,7 @@ class FeatureController extends BaseController
             if ($request->query->has('confirm')) {
                 //If the user has confirmed, perform the deletion
                 $feature->delete();
-                $this->get('session')->getFlashBag()->add('message', "$file BALETED!~");
+                $this->get('session')->getFlashBag()->add('message', "$file has been deleted.");
                 return $this->redirect($this->generateUrl('project_show', array('id' => $project_id)));
             } else {
                 //Ask the user to confirm

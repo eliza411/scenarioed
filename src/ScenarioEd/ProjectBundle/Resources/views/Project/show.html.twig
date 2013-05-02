@@ -10,7 +10,7 @@
    <form action="{{ path('project_run', { 'id': entity.id }) }}" method="post">
        <button type="submit" class="action run">Run all features</button>
       <h1><span class="prepend">Project: </span>{{ entity.projectname }}</h1>
-     <p>To run a single feature (or to edit or delete), click the title, then choose Run. //TODO: This needs links to go directly to edit or run.</p>
+     <p>To run a single feature (or to edit or delete), click the title, then choose Run. //TODO: should this allow direct deletion?</p>
   </form>
       <table class="record_properties">
         <tbody>
