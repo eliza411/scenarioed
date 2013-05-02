@@ -202,6 +202,9 @@ class Project
                     'paths' => array(
                        'features' => 'features'
                     ),
+                    'formatter' => array(
+                       'name' => 'Behat\Behat\Formatter\ScenarioedFormatter'
+                    ),
                 'extensions' => array(
                     'Behat\MinkExtension\Extension' => array(
                       'goutte' => null,
