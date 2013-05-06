@@ -173,7 +173,7 @@ class Project
     {
         // Build config file location 
         $fs = new Filesystem();
-        $project_dir = '/home/melissa/projects'.DIRECTORY_SEPARATOR.'project-'.$this->id;
+        $project_dir = getcwd().DIRECTORY_SEPARATOR.'projects'.DIRECTORY_SEPARATOR.'project-'.$this->id;
         $config_file = 'behat.yml';
         $shell_file = 'jenkins.sh';
         $shell_config = $project_dir.DIRECTORY_SEPARATOR.$shell_file;
@@ -221,7 +221,7 @@ class Project
         // Write the file
         if ($fs->exists($project_dir. '/bin')) {
         } else {
-          $fs->mirror('/home/melissa/example', $project_dir. '/');
+          $fs->mirror(getcwd().DIRECTORY_SEPARATOR.'example', $project_dir. '/');
           $fs->chmod($project_dir. '/bin/behat', 0755, 0000);
           $fs->chmod($project_dir. '/jenkins.sh', 0755, 0000);
         }
