@@ -42,22 +42,22 @@ Installation
           cd web/example
           php ../../composer.phar install
 
-6. Create database
+7. Create database
 
          mysql -u root -p
          create database scenarioed 
          grant all on scenarioed.* to scenarioed@localhost
 
-7. If you wish to use a different database name or user name, edit app/config/parameters.yml and set the values accordingly.
+8. If you wish to use a different database name or user name, edit app/config/parameters.yml and set the values accordingly.
 
-8. Load the database schema
+9. Load the database schema
 
          php app/console doctrine:schema:create
 
-9. Ensure the web server has write privileges to app/cache and /app/logs. Replace www-data with the user which runs the webserver.
+10. Ensure the web server has write privileges where needed. Replace www-data with the user which runs the webserver.
 
-         chown www-data app/logs app/cache
+         chown -R www-data app/logs app/cache web/projects
 
-10. Configure Apache to point at the scenarioed/web folder
+11. Configure Apache to point at the scenarioed/web folder
 
-11. Load yourdomain.com/project
+12. Load yourdomain.com
