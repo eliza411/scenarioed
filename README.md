@@ -34,17 +34,21 @@ Installation
 
          curl -sS https://getcomposer.org/installer | php
 
-5. Install: 
+5. Install ScenarioEd: 
 
          php composer.phar install
+
+6. Set up the example project:
+          cd web/example
+          php ../../composer.phar install
 
 6. Create database
 
          mysql -u root -p
-         create database database_name
-         grant all on database_name.* to database_user@localhost
+         create database scenarioed 
+         grant all on scenarioed.* to scenarioed@localhost
 
-7. Edit app/config/parameters.yml to set the database name and database user
+7. If you wish to use a different database name or user name, edit app/config/parameters.yml and set the values accordingly.
 
 8. Load the database schema
 
