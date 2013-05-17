@@ -11,3 +11,4 @@ composer.phar
 *.swp
 app/config/parameters.yml
 *composer.lock
+web/projects/*
