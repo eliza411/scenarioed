@@ -70,3 +70,9 @@ services:
     behat_config:
         class: ScenarioEd\ProjectBundle\BehatConfig
         arguments: [project_id]
+
+# Set up ACE
+norzechowicz_ace_editor:
+    autoinclude: true
+    debug: true # sources not minified with uglify.js
+    noconflict: false # uses ace.require instead of require
