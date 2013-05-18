@@ -39,14 +39,15 @@ Installation
          php composer.phar install
 
 6. Set up the example project:
+
           cd web/example
           php ../../composer.phar install
 
 7. Create database
 
          mysql -u root -p
-         create database scenarioed 
-         grant all on scenarioed.* to scenarioed@localhost
+         create database scenarioed;
+         grant all on scenarioed.* to scenarioed@localhost;
 
 8. If you wish to use a different database name or user name, edit app/config/parameters.yml and set the values accordingly.
 
