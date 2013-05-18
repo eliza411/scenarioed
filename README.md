@@ -15,7 +15,9 @@ Requirements
    You should also disable the short open tags, which can conflict with XML
      short_open_tag = off 
 
+For Debian/Ubuntu:
 
+         apt-get install git curl apache2 mysql-server php5 php5-curl php5-mysql php-pear libapache2-mod-php5
 
 Installation
 ------------
@@ -34,19 +36,21 @@ Installation
 
          curl -sS https://getcomposer.org/installer | php
 
-5. Install ScenarioEd: 
+5. Install ScenarioEd. It takes a bit until you start to see output from Composer, so sit tight.
 
          php composer.phar install
 
 6. Set up the example project:
+
           cd web/example
           php ../../composer.phar install
+          cd ../..
 
 7. Create database
 
          mysql -u root -p
-         create database scenarioed 
-         grant all on scenarioed.* to scenarioed@localhost
+         create database scenarioed;
+         grant all on scenarioed.* to scenarioed@localhost;
 
 8. If you wish to use a different database name or user name, edit app/config/parameters.yml and set the values accordingly.
 
@@ -60,4 +64,4 @@ Installation
 
 11. Configure Apache to point at the scenarioed/web folder
 
-12. Load yourdomain.com
+12. Load your site in a browser, create an account, and log in.
