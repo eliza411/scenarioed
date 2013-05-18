@@ -15,7 +15,9 @@ Requirements
    You should also disable the short open tags, which can conflict with XML
      short_open_tag = off 
 
+For Debian/Ubuntu:
 
+         apt-get install git curl apache2 mysql-server php5 php5-curl php5-mysql php-pear libapache2-mod-php5
 
 Installation
 ------------
