@@ -34,7 +34,7 @@ Installation
 
          curl -sS https://getcomposer.org/installer | php
 
-5. Install ScenarioEd: 
+5. Install ScenarioEd. It takes a bit until you start to see output from Composer, so sit tight.
 
          php composer.phar install
 
@@ -42,6 +42,7 @@ Installation
 
           cd web/example
           php ../../composer.phar install
+          cd ../..
 
 7. Create database
 
@@ -61,4 +62,4 @@ Installation
 
 11. Configure Apache to point at the scenarioed/web folder
 
-12. Load yourdomain.com
+12. Load your site in a browser, create an account, and log in.
