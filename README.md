@@ -1,6 +1,7 @@
 ScenarioEd
 ==========
 
+
 Requirements
 ------------
 
@@ -44,7 +45,9 @@ Installation
 
           cd web/example
           php ../../composer.phar install
+          cp ScenarioedFormatter.php vendor/behat/behat/src/Behat/Behat/Formatter/ScenarioedFormatter.php
           cd ../..
+                 
 
 7. Create database
 
